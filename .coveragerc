@@ -1,0 +1,3 @@
+[run]
+source = authentication
+omit = authentication/test*
