@@ -3,7 +3,7 @@ body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   color: #ffffff;
-  background: #bc2131;
+  background: #00a601;
 }
 h1,
 h2,
@@ -68,7 +68,7 @@ p {
 .starter-template .links ul li:last-child {
   margin-right: 0;
 }
-.starter-template .links ul li.current-version {
+.starter-template .links ul li.curre                                         nt-version {
   color: #f2b7bd;
   font-weight: 400;
 }
@@ -90,7 +90,7 @@ p {
 .starter-template .copyright {
   margin-top: 10px;
   font-size: 0.9em;
-  color: #f2b7bd;
+  color: ##ceffce;
   text-transform: lowercase;
   float: right;
   right: 0;
