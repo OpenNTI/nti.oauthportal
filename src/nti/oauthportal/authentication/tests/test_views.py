@@ -16,7 +16,7 @@ class ViewTests(unittest.TestCase):
         testing.tearDown()
 
     def test_google_no_state(self):
-        from .views.google import GoogleOAuthViews
+        from ..views.google import GoogleOAuthViews
         request = testing.DummyRequest()
         info = GoogleOAuthViews(request)
         assert_that(calling(info.authorization_request), raises(AuthorizationError))
