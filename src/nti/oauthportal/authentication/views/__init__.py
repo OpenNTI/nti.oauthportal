@@ -34,6 +34,12 @@ class AbstractOAuthViews(object):
     def error_response(self, loc, error='Unknown', desc='An unknown error occurred'):
         return redirect_with_params(loc, {'error': error, 'error_description': desc})
 
+    def authorization_error(self, msg):
+        error_uid = str(uuid4())
+        logger.error(msg, error_uid)
+        raise AuthorizationError(
+            "An error occurred during authorization: %s" % (error_uid,))
+
     def _do_authorization_request(self):
         """
         Given a set of params suitable for the first step of the oauth
@@ -46,13 +52,9 @@ class AbstractOAuthViews(object):
 
         state = params.pop('state', None)
         if not state:
-            error_uid = str(uuid4())
-            logger.error("Missing state for authorization request. "
-                         "No way to obtain or validate redirect uri (%s). ",
-                         error_uid)
-
-            raise AuthorizationError(
-                "An error occurred during authorization: %s" % (error_uid,))
+            self.authorization_error(
+                "Missing state for authorization request. "
+                "No way to obtain or validate redirect uri (%s). ")
 
         self.request.session[self.session_key('orig_state')] = state
 
@@ -62,6 +64,11 @@ class AbstractOAuthViews(object):
         # redirect uri passed, to avoid acting as an open
         # redirector (https://tools.ietf.org/html/rfc6819#section-4.2.4)
         _, redirect_uri = self._unpack_state(state)
+
+        if not redirect_uri:
+            self.authorization_error(
+                "Missing redirect_uri specified in state for authorization "
+                "request. Unable to redirect after authorization.")
 
         # Capture the values we need to replace and stuff them in the session
         # See def:logon_return
