@@ -3,12 +3,12 @@
 
 from __future__ import print_function, unicode_literals, absolute_import, division
 import unittest
+import urllib.parse as urllib_parse
 
 from hamcrest import assert_that
 from hamcrest import has_entries
 from hamcrest import starts_with
 
-from six.moves import urllib_parse
 
 from nti.oauthportal.authentication.url_utils import url_with_params
 
