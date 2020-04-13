@@ -3,7 +3,6 @@ import os
 from uuid import uuid4
 
 from pyramid import httpexceptions as hexc
-from pyramid.url import urlencode
 from zope.cachedescriptors.property import Lazy
 
 from nti.common.interfaces import IContentSigner
@@ -81,10 +80,8 @@ class AbstractOAuthViews(object):
         params['state'] = mystate
         params['redirect_uri'] = self.redirect_route()
 
-        location = url_with_params(self.authorization_endpoint, params)
-
         # Send the user to the log in form
-        return hexc.HTTPSeeOther(location)
+        return redirect_with_params(self.authorization_endpoint, params)
 
     def authorization_request(self):
         try:
@@ -144,8 +141,7 @@ class AbstractOAuthViews(object):
         # See https://tools.ietf.org/html/rfc6819#section-5.2.4.5
         params['_redirect_uri'] = self.redirect_route()
 
-        location = self.request.session[self.session_key('orig_redirect_uri')] + '?' + urlencode(params)
-        return hexc.HTTPSeeOther(location=location)
+        return redirect_with_params(self._response_location, params)
 
     def authorization_return(self):
         try:

@@ -27,6 +27,7 @@ tests_require = [
     'pytest >= 3.7.4',
     'pytest-cov',
     'PyHamcrest',
+    'fudge',
 ]
 
 tools_require = [
