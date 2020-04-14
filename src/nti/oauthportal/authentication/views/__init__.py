@@ -86,7 +86,9 @@ class AbstractOAuthViews(object):
     def authorization_request(self):
         try:
             return self._do_authorization_request()
-        except Exception as e:
+        except AuthorizationError:
+            raise
+        except Exception:
             error_uid = str(uuid4())
             msg = "An error occurred during authorization: %s" % (error_uid,)
             logger.exception(msg)
