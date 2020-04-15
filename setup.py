@@ -13,7 +13,7 @@ requires = [
     'pyramid',
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
-    'gunicorn',
+    'gunicorn[gevent]',
     'automatic',
     'itsdangerous',
     'requests',
@@ -59,7 +59,10 @@ setup(
         'tools': tools_require,
     },
     install_requires=requires,
-entry_points={
+    entry_points={
+        'console_scripts': [
+            'nti_pserve = nti.oauthportal.authentication.nti_gunicorn:main',
+        ],
         'paste.app_factory': [
             'main = nti.oauthportal.authentication:main',
         ],
