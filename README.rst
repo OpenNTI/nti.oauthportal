@@ -27,13 +27,15 @@ Getting Started
 - Run your project.
 
   When running the server, the proper signer secret and salt will be
-  required from the platform using this portal, e.g. the signer secret
-  from the dataserver-signer configuration section.  This can be provided
-  in the ini file as `signer.secret` and `signer.salt`, or on the command
-  line with `SIGNER_SECRET` AND `SIGNER_SALT` environmental variables.
+  required to match those from the platform using this portal, e.g.
+  the signer secret from the ``dataserver-signer`` configuration section.
+  This can be provided in the ini file as ``signer.secret`` and
+  ``signer.salt``:
 
-    env/bin/pserve development.ini
+    env/bin/nti_pserve --paste development.ini
 
-  or
+  or provided on the command line with ``SIGNER_SECRET`` and
+  ``SIGNER_SALT`` environmental variables:
 
-    SIGNER_SECRET=<signer-secret> SIGNER_SALT=<signer-salt> env/bin/pserve development.ini
+    SIGNER_SECRET=<signer-secret> SIGNER_SALT=<signer-salt> env/bin/nti_pserve --paste development.ini
+
