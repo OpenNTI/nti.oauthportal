@@ -36,7 +36,8 @@ tools_require = [
 
 setup(
     name='nti.oauthportal',
-    version='0.0',
+    version_format='{tag}.dev{commits}+{sha}',
+    setup_requires=['very-good-setuptools-git-version'],
     description='oauthportal',
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
