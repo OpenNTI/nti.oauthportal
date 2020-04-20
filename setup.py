@@ -67,5 +67,8 @@ setup(
         'paste.app_factory': [
             'main = nti.oauthportal.authentication:main',
         ],
+        "paste.filter_app_factory": [
+            "ops_ping = nti.oauthportal.authentication.views.ping:ping_handler_factory",
+        ],
     },
 )
