@@ -26,5 +26,5 @@ def main(global_config, **settings):
         config.include('pyramid_chameleon')
         config.include('.routes')
         config.include('.signer')
-        config.scan()
+        config.scan(ignore=".tests")
     return config.make_wsgi_app()
