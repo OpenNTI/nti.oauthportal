@@ -18,7 +18,7 @@ requires = [
     'itsdangerous',
     'requests',
     'zope.cachedescriptors',
-    'nti.common @ git+ssh://git@github.com/NextThought/nti.common',
+    'nti.common @ git+ssh://git@github.com/OpenNTI/nti.common',
     'zope.component',
 ]
 
@@ -41,6 +41,7 @@ setup(
     description='oauthportal',
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
+        'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
         'Framework :: Pyramid',
         'Topic :: Internet :: WWW/HTTP',
